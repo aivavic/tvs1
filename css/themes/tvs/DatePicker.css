@@ -1,0 +1,95 @@
+input#User_dob {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    /*height: 20px;*/
+    width: 96px;
+
+
+}
+input#User_dob:focus {
+    outline: none;
+}
+
+input#User_dob + i.fa.fa-caret-down {
+    margin-left: -21px;
+    color: rgb(0, 127, 194);
+    font-size: 20px;
+    vertical-align: bottom;
+}
+#ui-datepicker-div {
+    background-color: #fff;
+    width: 200px;
+    /*border: 1px solid rgb(0, 127, 194);*/
+    padding: 5px;
+
+    -webkit-box-shadow: 4px 4px 24px 0px rgba(0, 127, 194, 0.64);
+    -moz-box-shadow:    4px 4px 24px 0px rgba(0, 127, 194, 0.64);
+    box-shadow:         4px 4px 24px 0px rgba(0, 127, 194, 0.64);
+}
+
+a.ui-datepicker-next.ui-corner-all {
+    float: right;
+    position: relative;
+    margin-right: 20px;
+    font-size: 16px;
+    cursor: pointer;
+
+}
+
+a.ui-datepicker-next.ui-corner-all:before {
+    content: "\f061";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+
+    position: absolute;
+    top: 4px;
+    right: -17px;
+}
+a.ui-datepicker-prev.ui-corner-all {
+
+    position: relative;
+    margin-left: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+a.ui-datepicker-prev.ui-corner-all:before {
+    content: "\f060";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transform: translate(0, 0);
+
+    position: absolute;
+    top: 4px;
+    left: -17px;
+}
+
+.ui-datepicker-title {
+    text-align: center;
+    border-bottom: 1px solid rgb(0, 127, 194);
+    padding-bottom: 7px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+table.ui-datepicker-calendar {
+    width: 100%;
+}
+
+select.ui-datepicker-month {
+    width: 46%;
+    margin-right: 5px;
+}
+
+select.ui-datepicker-year {
+    width: 46%;
+    margin-left: 5px;
+}
