@@ -126,29 +126,26 @@ class TvseriesController extends Controller
 
        $model = new Tvseries;
 
-echo '<pre>';
-var_dump($_POST);
-echo '</pre>';
 //        // Uncomment the following line if AJAX validation is needed
      $this->performAjaxValidation($model);
-//
-//        if (isset($_POST['Tvseries'])) {
-//            $rnd = rand(0, 9999);
-//            $model->attributes = $_POST['Tvseries'];
-//            //$model->image=CUploadedFile::getInstance($model,'image');
-//            $uploadedFile = CUploadedFile::getInstance($model, 'image');
-//            $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
-//            $model->image = $fileName;
-//
-//            if ($model->save()) {
-//                if ($model->image !== null) {
-//                    $path = Yii::getPathOfAlias('webroot') . '/upload/' . $model->image;
-//                    //$model->image->saveAs($path);
-//                    $uploadedFile->saveAs($path);
-//                }
-//                $this->redirect(array('view', 'id' => $model->id));
-//            }
-//        }
+
+        if (isset($_POST['Tvseries'])) {
+            $rnd = rand(0, 9999);
+            $model->attributes = $_POST['Tvseries'];
+            //$model->image=CUploadedFile::getInstance($model,'image');
+            $uploadedFile = CUploadedFile::getInstance($model, 'image');
+            $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
+            $model->image = $fileName;
+
+            if ($model->save()) {
+                if ($model->image !== null) {
+                    $path = Yii::getPathOfAlias('webroot') . '/upload/' . $model->image;
+                    //$model->image->saveAs($path);
+                    $uploadedFile->saveAs($path);
+                }
+                $this->redirect(array('view', 'id' => $model->id));
+            }
+        }
         $this->render('create', array(
             'model' => $model, 'data' => $data
         ));
