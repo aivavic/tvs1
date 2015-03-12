@@ -1,0 +1,77 @@
+.avatar{
+  width: 100px;
+  height: auto;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  float: left;
+  margin-right: 30px;
+}
+.info{
+  margin-bottom: 40px;
+  background-color: white;
+  padding: 12px;
+
+  @include clearfix();
+  .box-right {
+    float: left;
+    width: 430px;
+    @include clearfix();
+    h3{
+
+      color: #212121;
+      margin-top: 32px;
+    }
+    .rating{
+      float: right;
+      width: 140px;
+      margin-top: 32px;
+      @include clearfix();
+      .rating-block{
+        float: left;
+        margin-top: 8px;
+        margin-right: 9px;
+      }
+      h5{
+
+        span{
+          color: rgb(144, 74, 194);
+        }
+      }
+    }
+    p {
+
+      width: 100%;
+      overflow: hidden;
+      @include clearfix();
+    }
+  }
+  .tvs-image{
+
+    width: 278px;
+
+  }
+  .overlay{
+    background-color: #4db6ac;
+    height: 500px;
+    width: 278px;
+    float: left;
+    margin-top: 32px;
+    margin-right: 10px;
+    text-align: center;
+    h3{
+      color: #ffffff;
+      font-weight: 300;
+      margin-bottom: 3px;
+      float: none;
+      margin-top: 15px;
+      & + span{
+        font-size: $font-size-base;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-weight: 400;
+      }
+    }
+  }
+
+}
