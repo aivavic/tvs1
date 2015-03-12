@@ -113,46 +113,6 @@ endif;
 
     </div>
 
-
-
-    <h1>Серии</h1>
-
-    <?php $this->beginWidget('system.web.widgets.CClipWidget', array('id'=>'My tab 1')); ?>
-
-    <?php $this->endWidget(); ?>
-
-    <?php $this->beginWidget('system.web.widgets.CClipWidget', array('id'=>'My tab 2')); ?>
-    My tab 2 ...
-    <?php $this->endWidget(); ?>
-
-    <?php $this->beginWidget('system.web.widgets.CClipWidget', array('id'=>'My tab 3')); ?>
-    My tab 3 ...
-    <?php $this->endWidget(); ?>
-
-    <?php
-    $tabParameters = array();
-    foreach($this->clips as $key=>$clip) {
-
-        $tabParameters['tab' . (count($tabParameters) + 1)] = array('title' => $key, 'content' => $clip);
-
-    }
-
-$series = json_encode($tabParameters);  ?>
-    <?php echo '<pre>';
-    var_dump(json_encode($tabParameters));
-    echo '</pre>'; ?>
-
-
-    <?php $this->widget('system.web.widgets.CTabView', array('tabs'=>$tabParameters)); ?>
-
-    <?php echo $form->hiddenField($model, 'test', ['value'=>$series]); ?>
-    <h1>Актеры</h1>
-
-
-
-
-
-
     <div class="field buttons">
         <?php $_POST["Tvseries"]['series'] = $tabParameters; ?>
         <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', ['class' => "btn btn-info"] ); ?>
