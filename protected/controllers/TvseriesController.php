@@ -132,7 +132,6 @@ class TvseriesController extends Controller
         if (isset($_POST['Tvseries'])) {
             $rnd = rand(0, 9999);
             $model->attributes = $_POST['Tvseries'];
-            //$model->image=CUploadedFile::getInstance($model,'image');
             $uploadedFile = CUploadedFile::getInstance($model, 'image');
             $fileName = "{$rnd}-{$uploadedFile}";  // random number + file name
             $model->image = $fileName;
