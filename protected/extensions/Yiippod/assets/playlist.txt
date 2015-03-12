@@ -1,0 +1,12 @@
+{"playlist":[
+
+         {"comment":"Season1","playlist":[
+            {"file":"https://www.youtube.com/watch?v=ocs-JScAUzg", "comment":"Series1"},
+            {"file":"https://www.youtube.com/watch?v=ocs-JScAUzg", "comment":"Series2"}
+         ]},
+         {"comment":"Season2","playlist":[
+               {"file":"https://www.youtube.com/watch?v=ocs-JScAUzg","comment":"Series1"},
+               {"file":"https://www.youtube.com/watch?v=ocs-JScAUzg", "comment":"Series2"}
+            ]},
+         {"comment":"Файл","file":"http://..."}
+      ]}

@@ -1,0 +1,10 @@
+{
+  "options": {
+    "registerOnly": false,
+    "useCaptcha": false,
+    "allowSubcommenting": true,
+    "premoderate": true,
+    "isSuperuser": false,
+    "orderComments": "DESC"
+  }
+}

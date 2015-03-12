@@ -1,0 +1,1 @@
+<h1> <?php echo $lang1; ?></h1>
