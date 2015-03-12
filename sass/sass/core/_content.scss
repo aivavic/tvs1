@@ -1,5 +1,11 @@
 #content {
   padding-bottom: 40px;
+  span#Tvseries_id {
+    column-count: 3;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    display: block;
+  }
   a.view{
     position: relative;
     background-color: transparent;

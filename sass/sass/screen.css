@@ -6575,6 +6575,11 @@ ul {
 /* CONTENT */
 #content {
   padding-bottom: 40px; }
+  #content span#Tvseries_id {
+    column-count: 3;
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    display: block; }
   #content a.view {
     position: relative;
     background-color: transparent;

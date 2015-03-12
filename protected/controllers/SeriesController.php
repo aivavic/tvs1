@@ -64,8 +64,6 @@ class SeriesController extends Controller
 	{
 		$model=new Series;
 
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Series']))
 		{

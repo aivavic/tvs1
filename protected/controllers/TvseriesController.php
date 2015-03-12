@@ -7,10 +7,11 @@ class TvseriesController extends Controller
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
-
+    public $tabs = [];
     public $id_tvseries;
     public $id_genre;
     public $description = 'Tvseries';
+
 
     /**
      * @return array action filters
@@ -32,11 +33,11 @@ class TvseriesController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions' => array('index', 'view', 'detail', 'newtvseries',),
+                'actions' => ['index', 'view', 'detail',],
                 'roles' => array('guest'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete'),
+                'actions' => array('create', 'update', 'admin', 'delete', 'addseries'),
                 'roles' => array('2'),
             ),
 
@@ -59,10 +60,6 @@ class TvseriesController extends Controller
         ));
     }
 
-    public function actionNewtvseries()
-    {
-        $this->render('newtvseries', array());
-    }
 
     public function actionDetail()
     {
@@ -97,11 +94,10 @@ class TvseriesController extends Controller
         }
 
 
-
         $actors = Tvseries::model()->with('actor')->findByPk($model->id);
 
         $actor = ($actors['actor']);
-
+$this->tabs = $tabs;
 
         $this->render('detail', [
             'model' => $model,
@@ -120,14 +116,8 @@ class TvseriesController extends Controller
 
     public function actionCreate()
     {
-
-
-
-
-       $model = new Tvseries;
-
-//        // Uncomment the following line if AJAX validation is needed
-     $this->performAjaxValidation($model);
+        $model = new Tvseries;
+        $this->performAjaxValidation($model);
 
         if (isset($_POST['Tvseries'])) {
             $rnd = rand(0, 9999);
@@ -146,7 +136,7 @@ class TvseriesController extends Controller
             }
         }
         $this->render('create', array(
-            'model' => $model, 'data' => $data
+            'model' => $model,
         ));
     }
 
@@ -159,10 +149,9 @@ class TvseriesController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->loadModel($id);
-
-        // Uncomment the following line if AJAX validation is needed
+        $series_model = new Series;
         $this->performAjaxValidation($model);
-        var_dump($model->image);
+
         if (isset($_POST['Tvseries'])) {
             $rnd = rand(0, 9999);
             $model->attributes = $_POST['Tvseries'];
@@ -181,9 +170,11 @@ class TvseriesController extends Controller
                 $this->redirect(array('view', 'id' => $model->id));
         }
 
-        $this->render('update', array(
+        $this->render('update', [
             'model' => $model,
-        ));
+            'model_series' => $series_model,
+            'tabs'=>$this->tabs,
+        ]);
     }
 
     /**

@@ -38,41 +38,12 @@
 <?php
 $this->widget('zii.widgets.jui.CJuiTabs', array(
     'tabs' => $tabs,
-
     'options' => array(
         'collapsible' => true,
     ),
     'id' => 'MyTab-Menu',
 ));
 ?>
-
-
-    <!---->
-    <!--<script-->
-    <!--    src="--><?php //echo Yii::app()->request->baseUrl; ?><!--/protected/extensions/Carousel/assets/theme/default/owl.carousel.default.js"></script>-->
-    <!--<link rel="stylesheet"-->
-    <!--      href="--><?php //echo Yii::app()->request->baseUrl; ?><!--/protected/extensions/Carousel/assets/theme/default/owl.carousel.default.css"/>-->
-    <!--<div id="owl-example" class="owl-carousel">-->
-    <!--    <div class="item"><img src="/upload/71-logo.jpg" alt="Owl Image"></div>-->
-    <!--    <div class="item"><img src="/upload/71-logo.jpg" alt="Owl Image"></div>-->
-    <!--    <div class="item"><img src="/upload/71-logo.jpg" alt="Owl Image"></div>-->
-    <!--    <div class="item"><img src="/upload/71-logo.jpg" alt="Owl Image"></div>-->
-    <!--    <div class="item"><img src="/upload/71-logo.jpg" alt="Owl Image"></div>-->
-    <!--    <div class="item"><img src="/upload/71-logo.jpg" alt="Owl Image"></div>-->
-    <!--    <div class="item"><img src="/upload/71-logo.jpg" alt="Owl Image"></div>-->
-    <!--    <div class="item"><img src="/upload/71-logo.jpg" alt="Owl Image"></div>-->
-    <!--</div>-->
-    <!--<script>-->
-    <!--    jQuery(document).ready(function () {-->
-    <!--        jQuery(".owl-carousel").owlCarousel({-->
-    <!--            items: 5,-->
-    <!--            loop: true,-->
-    <!--            margin: 10,-->
-    <!--            nav: true-->
-    <!--        });-->
-    <!--    });-->
-    <!--</script>-->
-
 <?php $this->widget('ext.Carousel.Carousel', [
     'id_series' => $model->id,
     'data' => $actor,

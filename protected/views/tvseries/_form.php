@@ -77,6 +77,13 @@ endif;
     </div>
     <div class="field">
         Постер: <input type="text" value="<?php echo $parse['Poster']; ?>"/>
+
+        <?php if(!$model->isNewRecord) {
+            echo CHtml::image(Yii::app()->baseUrl . '/upload/' . $model->image, '', array(
+                'class' => 'actor-photo',
+                'width' => '120px',));;
+        }
+		?>
         <?php
         echo $form->labelEx($model, 'image') . '<br/>';
         echo $form->fileField($model, 'image', array('class' => "form-control"));
@@ -119,5 +126,29 @@ endif;
     </div>
 
     <?php $this->endWidget(); ?>
+
+    <?php if(!$model->isNewRecord) : ?>
+<?php
+        $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+        'id'=>'mydialog',
+        // additional javascript options for the dialog plugin
+        'options'=>array(
+        'title'=>'Добавление серии',
+        'autoOpen'=>false,
+        'modal'=>true,
+        ),
+        ));
+
+       $this->renderPartial('addseries', ['tvs_id'=>$model->id, 'model_series'=>$model_series]);
+
+
+        $this->endWidget('zii.widgets.jui.CJuiDialog');
+
+        // the link that may open the dialog
+        echo CHtml::link('open dialog', '#', array(
+        'onclick'=>'$("#mydialog").dialog("open"); return false;',
+        ));
+        ?>
+    <?php endif; ?>
 
 </div><!-- form -->
