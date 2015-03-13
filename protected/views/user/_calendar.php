@@ -2,9 +2,6 @@
 echo $Values."<br/>";
 
 
-echo '<pre>';
-var_dump($subscribes);
-echo '</pre>';
 
 $this->widget('ext.Calendar.YiiCalendar', array
 (
