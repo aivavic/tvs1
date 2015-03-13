@@ -52,7 +52,7 @@ $this->widget('zii.widgets.jui.CJuiTabs', array(
         )),
         'Календарь'=>array('id'=>'calendar','content'=>$this->renderPartial(
             '_calendar',
-            array('Values'=>'Календарь'),TRUE
+            array('Values'=>'Календарь', 'subscribes'=>$subscribes),TRUE
         )),
         'Подписки'=>array('id'=>'subscribes','content'=>$this->renderPartial(
             '_subscribes',
