@@ -7,7 +7,7 @@ class TvseriesController extends Controller
      * using two-column layout. See 'protected/views/layouts/column2.php'.
      */
     public $layout = '//layouts/column2';
-    public $tabs = [];
+
     public $id_tvseries;
     public $id_genre;
     public $description = 'Tvseries';
@@ -33,11 +33,11 @@ class TvseriesController extends Controller
     {
         return array(
             array('allow',  // allow all users to perform 'index' and 'view' actions
-                'actions' => ['index', 'view', 'detail',],
+                'actions' => array('index', 'view', 'detail', 'newtvseries',),
                 'roles' => array('guest'),
             ),
             array('allow', // allow authenticated user to perform 'create' and 'update' actions
-                'actions' => array('create', 'update', 'admin', 'delete', 'addseries'),
+                'actions' => array('create', 'update', 'admin', 'delete', 'addseries', 'actor/create'),
                 'roles' => array('2'),
             ),
 
@@ -60,15 +60,21 @@ class TvseriesController extends Controller
         ));
     }
 
+    public function actionNewtvseries()
+    {
+        $this->render('newtvseries', array());
+    }
 
     public function actionDetail()
     {
         //$model = new Tvseries;
+
         $name = $_GET['name'];
 
         $model = Tvseries::model()->find('name=:name', array(':name' => $name));
 
         $series = Tvseries::model()->with('series')->findByPk($model->id);
+
         $season = array();
         for ($i = 0; $i < count($series['series']); $i++) {
             $season[$i] = $series['series'][$i]['id_season'];
@@ -97,12 +103,13 @@ class TvseriesController extends Controller
         $actors = Tvseries::model()->with('actor')->findByPk($model->id);
 
         $actor = ($actors['actor']);
-$this->tabs = $tabs;
+
 
         $this->render('detail', [
             'model' => $model,
             'tabs' => $tabs,
             'actor' => $actor,
+            'model_actor' => $model_actor,
 
         ]);
     }
@@ -148,8 +155,31 @@ $this->tabs = $tabs;
 
     public function actionUpdate($id)
     {
+
+
+
+
+        if(isset($_POST['ActorTvseries']))
+        {
+            $model_ActorTvseries=new ActorTvseries;
+            $model_ActorTvseries->attributes=$_POST['ActorTvseries'];
+            if($model_ActorTvseries->save())
+                $this->refresh();
+        }
+
+        if(isset($_POST['Series']))
+        {
+            $model_series=new Series;
+            $model_series->attributes=$_POST['Series'];
+            if($model_series->save())
+                $this->refresh();
+        }
+
+
+
         $model = $this->loadModel($id);
         $series_model = new Series;
+        $model_actor = new Actor;
         $this->performAjaxValidation($model);
 
         if (isset($_POST['Tvseries'])) {
@@ -170,10 +200,26 @@ $this->tabs = $tabs;
                 $this->redirect(array('view', 'id' => $model->id));
         }
 
+        $actors = Actor::model()->findAll();
+
+        $dataProvider = new CActiveDataProvider('Actor', array(
+            'pagination' => array(
+                'pageSize' => 20,
+            ),
+            'sort' => array(
+                'defaultOrder' => array(
+                    'id' => CSort::SORT_DESC,
+                )
+            ),
+        ));
+
         $this->render('update', [
             'model' => $model,
             'model_series' => $series_model,
-            'tabs'=>$this->tabs,
+            'model_actor' =>  $model_actor,
+            'actors' => $actors,
+            'dataProvider' => $dataProvider,
+
         ]);
     }
 
