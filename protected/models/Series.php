@@ -30,7 +30,7 @@ class Series extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id_season, name, url, date, id_tvseries', 'required'),
+			array('id_season, name, date, id_tvseries', 'required'),
 			array('id_season, id_tvseries', 'numerical', 'integerOnly'=>true),
 			array('name, url, date', 'length', 'max'=>255),
 			array('description', 'length', 'max'=>1000),
@@ -59,7 +59,7 @@ class Series extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'id_season' => 'Сезон',
-			'name' => 'Название серии',
+			'name' => 'Номер серии',
 			'url' => 'Ссылка на просмотр',
 			'date' => 'Дата выхода серии',
 			'description' => 'Описание серии',
@@ -107,5 +107,14 @@ class Series extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function lastseries($limit=6)
+	{
+		$this->getDbCriteria()->mergeWith(array(
+			'order'=>'Date DESC',
+			'limit'=>$limit,
+		));
+		return $this;
 	}
 }

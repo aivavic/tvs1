@@ -30,7 +30,7 @@ class Tvseries extends CActiveRecord
         return array(
             array('name, description, imdbRating, imdbVotes', 'required'),
             array('name', 'length', 'max' => 255),
-            array('id_tvseries, id_user, active, subscribes', 'numerical', 'integerOnly'=>true),
+            array('id_tvseries, id_user, active, subscribes', 'numerical', 'integerOnly' => true),
             array('description', 'length', 'max' => 10000),
             array('Country', 'length', 'max' => 100),
             array('Date', 'length', 'max' => 255),
@@ -148,7 +148,9 @@ class Tvseries extends CActiveRecord
         return array(
             'recently' => array(
                 'limit' => 6,
+                'order' => "RAND()",
             ),
+
         );
     }
 
@@ -161,5 +163,14 @@ class Tvseries extends CActiveRecord
     public static function model($className = __CLASS__)
     {
         return parent::model($className);
+    }
+
+    public function lastseries($limit=6)
+    {
+        $this->getDbCriteria()->mergeWith(array(
+            'order'=>'Date DESC',
+            'limit'=>$limit,
+        ));
+        return $this;
     }
 }

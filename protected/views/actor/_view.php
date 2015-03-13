@@ -19,23 +19,14 @@
         <div class="box-right">
 
             <?php echo CHtml::encode($data->firstname) . ' ' . CHtml::encode($data->lastname) . '</br>'; ?>
-
-
-
             <b><?php echo CHtml::encode($data->getAttributeLabel('datebirth')); ?>:</b>
             <?php echo CHtml::encode($data->datebirth, array(
                 'class' => 'datebirth',
             )); ?>
-
-
             <br/>
 
             <b><?php echo CHtml::encode($data->getAttributeLabel('placebirth')); ?>:</b>
             <?php echo CHtml::encode($data->placebirth); ?>
-
-
-
-
             <br/>
 
             <b><?php echo CHtml::encode($data->getAttributeLabel('activities')); ?>:</b>
@@ -45,7 +36,6 @@
             <b><?php echo CHtml::encode($data->getAttributeLabel('achievements')); ?>:</b>
             <?php echo ($data->achievements); ?>
             <br/>
-
 
             <b><?php echo CHtml::encode($data->getAttributeLabel('biography')); ?>:</b>
             <?php echo ($data->biography); ?>

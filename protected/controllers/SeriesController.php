@@ -62,6 +62,7 @@ class SeriesController extends Controller
 	 */
 	public function actionCreate()
 	{
+
 		$model=new Series;
 
 

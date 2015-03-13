@@ -78,26 +78,22 @@ endif;
     <div class="field">
         Постер: <input type="text" value="<?php echo $parse['Poster']; ?>"/>
 
-        <?php if(!$model->isNewRecord) {
+        <?php if (!$model->isNewRecord) {
             echo CHtml::image(Yii::app()->baseUrl . '/upload/' . $model->image, '', array(
                 'class' => 'actor-photo',
                 'width' => '120px',));;
         }
-		?>
+        ?>
         <?php
         echo $form->labelEx($model, 'image') . '<br/>';
         echo $form->fileField($model, 'image', array('class' => "form-control"));
         echo $form->error($model, 'image');
         ?>
     </div>
-    <?php for ($i = 1900; $i <= date("Y"); $i++) {
-        $year[$i] = $i;
-    } ?>
-    <?php echo CHtml::dropDownList('listname', $select,
-        $year) ?>
+
     <div class="field">
         <?php echo $form->labelEx($model, 'Date'); ?><br/>
-        <?php echo $form->textField($model, 'Date', array('size' => 60, 'maxlength' => 100, 'value' => $parse['Year'])); ?>
+        <?php echo $form->numberField($model, 'Date', ['size' => 60, 'maxlength' => 100, 'value' => $parse['Year'], 'min'=>1900, 'max'=>date("Y")+5]); ?>
         <?php echo $form->error($model, 'Date'); ?>
     </div>
     <div class="field">
@@ -121,34 +117,101 @@ endif;
     </div>
 
     <div class="field buttons">
-        <?php $_POST["Tvseries"]['series'] = $tabParameters; ?>
-        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', ['class' => "btn btn-info"] ); ?>
+
+        <?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save', ['class' => "btn btn-info"]); ?>
     </div>
 
     <?php $this->endWidget(); ?>
 
-    <?php if(!$model->isNewRecord) : ?>
-<?php
+
+
+
+    <?php if (!$model->isNewRecord) : ?>
+        <?php
         $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
-        'id'=>'mydialog',
-        // additional javascript options for the dialog plugin
-        'options'=>array(
-        'title'=>'Добавление серии',
-        'autoOpen'=>false,
-        'modal'=>true,
-        ),
+            'id' => 'mydialog',
+            // additional javascript options for the dialog plugin
+            'options' => array(
+                'title' => 'Добавление серии',
+                'autoOpen' => false,
+                'modal' => true,
+                'width' => '620px',
+            ),
         ));
 
-       $this->renderPartial('addseries', ['tvs_id'=>$model->id, 'model_series'=>$model_series]);
+        $this->renderPartial('addseries', ['tvs_id' => $model->id, 'model_series' => $model_series]);
 
 
         $this->endWidget('zii.widgets.jui.CJuiDialog');
 
         // the link that may open the dialog
-        echo CHtml::link('open dialog', '#', array(
-        'onclick'=>'$("#mydialog").dialog("open"); return false;',
-        ));
+        echo CHtml::link('Добавить серию', '#', [
+            'onclick' => '$("#mydialog").dialog("open"); return false;',
+            'class' => 'form-control',
+        ]);
         ?>
     <?php endif; ?>
 
+
+    <?php if (!$model->isNewRecord) : ?>
+
+
+
+        <?php
+        $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+            'id' => 'actor-change-dialog',
+            // additional javascript options for the dialog plugin
+            'options' => array(
+                'title' => 'Выбор актера',
+                'autoOpen' => false,
+                'modal' => true,
+                'width' => '1000px',
+            ),
+        ));
+
+        $this->renderPartial('_change_actor', ['tvs_id' => $model->id, 'actors' => $actors, 'dataProvider'=>$dataProvider, 'model'=>$model]);
+
+
+        $this->endWidget('zii.widgets.jui.CJuiDialog');
+
+        // the link that may open the dialog
+        echo CHtml::link('Выбрать актера из списка', '#', [
+            'onclick' => '$("#actor-change-dialog").dialog("open"); return false;',
+            'class' => 'form-control',
+
+        ]);
+        ?>
+    <?php endif; ?>
+
+
+
+    <?php if (!$model->isNewRecord) : ?>
+
+
+
+        <?php
+        $this->beginWidget('zii.widgets.jui.CJuiDialog', array(
+            'id' => 'actor-dialog',
+            // additional javascript options for the dialog plugin
+            'options' => array(
+                'title' => 'Добавление актера',
+                'autoOpen' => false,
+                'modal' => true,
+                'width' => '1000px',
+            ),
+        ));
+
+        $this->renderPartial('_addactor', ['tvs_id' => $model->id, 'model_actor' => $model_actor]);
+
+
+        $this->endWidget('zii.widgets.jui.CJuiDialog');
+
+        // the link that may open the dialog
+        echo CHtml::link('Добавить актера', '#', [
+            'onclick' => '$("#actor-dialog").dialog("open"); return false;',
+            'class' => 'form-control',
+
+        ]);
+        ?>
+    <?php endif; ?>
 </div><!-- form -->

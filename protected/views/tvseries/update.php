@@ -8,6 +8,10 @@
 <div class="view">
     <?php $this->renderPartial('_form', [
         'model' => $model,
-        'model_series' => $model_series
+        'model_series' => $model_series,
+        'model_actor' => $model_actor,
+        'actors' => $actors,
+        'dataProvider' => $dataProvider,
+
     ]); ?>
 </div>

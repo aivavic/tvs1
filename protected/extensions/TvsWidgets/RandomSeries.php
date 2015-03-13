@@ -9,19 +9,27 @@
 class RandomSeries extends CWidget
 {
 
+    public $model;
+    public $model_rand;
+
+    public $genre;
+
     public $title = "Случайные сериалы";
 
     public function run()
     {
-        $model = Tvseries::model()->recently()->findAll();
-        $genre = Tvseries::model()->with('genre')->findAll();
+        $this->model = Tvseries::model()->recently()->findAll();
+        $this->genre = Tvseries::model()->with('genre')->findAll();
+
+
 
         $this->render('randomseries', array(
-            'tvseries' => $model,
-            'genre' => $genre,
-
+            'tvseries' => $this->model,
+            'genre' => $this->genre,
         ));
     }
+
+
 
 
 }

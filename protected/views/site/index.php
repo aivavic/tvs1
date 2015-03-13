@@ -15,7 +15,7 @@ $this->pageTitle = Yii::app()->name;
                 ?>
 
 
-                <?php $this->widget('ext.TvsWidgets.LastSeries', array(
+                <?php $this->widget('ext.TvsWidgets.LastSeries.LastSeries', array(
                     'title' => 'Последние серии',
                 ));
                 ?>

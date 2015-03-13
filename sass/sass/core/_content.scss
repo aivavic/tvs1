@@ -476,6 +476,10 @@
         transition: all 0.8s;
         position: relative;
         overflow: hidden;
+        img.last-series-image {
+          width: 136px;
+          min-height: 207px;
+        }
         &:hover {
           .list-box-hover {
             top: 0;

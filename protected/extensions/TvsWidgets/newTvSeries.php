@@ -12,6 +12,7 @@ class newTvSeries extends CWidget
     public function run()
     {
 
+
         $tvseries = Tvseries::model()->findAll(array(
             'select' => '*',
             'order' => 'Date DESC',

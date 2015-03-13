@@ -6989,6 +6989,9 @@ ul {
         transition: all 0.8s;
         position: relative;
         overflow: hidden; }
+        #content .last-series .list-box .last-images img.last-series-image {
+          width: 136px;
+          min-height: 207px; }
         #content .last-series .list-box .last-images:hover .list-box-hover {
           top: 0;
           bottom: 0;
